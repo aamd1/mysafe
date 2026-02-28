@@ -5,10 +5,11 @@ from src.core.domain.common.entity import Entity
 
 T = TypeVar('T')
 class AggregateRoot(Entity[T]):
-    __domain_events: list[DomainEvent] = []
+    __domain_events: list[DomainEvent]
 
     def __init__(self, entity_id: T):
         super().__init__(entity_id)
+        self.__domain_events = []
     @property
     def domain_events(self) -> list[DomainEvent]:
         return self.__domain_events
